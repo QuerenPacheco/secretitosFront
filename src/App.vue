@@ -1,15 +1,17 @@
 <template>
-  <h1>Secretos</h1>
-  <LoginForm/>
+  <v-sheet class="bg-deep-purple pa-12">
+    <h1>Secretos</h1>
+    <RegisterForm/>
+  </v-sheet>
 </template>
 
 <script>
-import LoginForm from "./components/LoginForm"
+import RegisterForm from "./components/RegisterForm.vue"
 
 export default {
   name: 'App',
   components: {
-    LoginForm,
+    RegisterForm,
   }
 }
 </script>
