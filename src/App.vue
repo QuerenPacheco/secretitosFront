@@ -1,20 +1,15 @@
 <template>
-  <v-sheet class="bg-deep-purple pa-12">
-    <h1>Secretos</h1>
-    <RegisterForm/>
-  </v-sheet>
+  <h1>Secretos</h1>
+  <router-view></router-view>
 </template>
 
 <script>
-import RegisterForm from "./components/RegisterForm.vue"
 
 export default {
   name: 'App',
   components: {
-    RegisterForm,
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>

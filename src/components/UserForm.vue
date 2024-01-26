@@ -1,7 +1,6 @@
 <template>
     
-    <h2 class="mt-4">Registro</h2>
-    <v-card class="mx-auto px-6 py-8" max-width="344"  text="Formulario de registro">
+    <v-card class="mx-auto px-6 py-8" max-width="344" :text="title">
       
       <v-form
         v-model="form"
@@ -24,7 +23,8 @@
           placeholder="Enter your password"
         ></v-text-field>
         
-        <v-text-field
+        <v-text-field 
+          v-if="passwordConfirm"
           v-model="confirmPassword"
           :readonly="loading"
           :rules="[required, validatePasswords]"
@@ -44,17 +44,22 @@
           type="submit"
           variant="elevated"
         >
-          Acceder
+          Enviar
         </v-btn>
       </v-form>
     </v-card>
-    <br>
 
 </template>
 <script>
-  import axios from 'axios';
+  import axiosInstance from '@/api/axios'
 
   export default {
+    props: {
+      title: String,
+      passwordConfirm: Boolean,
+      formUri: String
+    },
+
     data: () => ({
       form: false,
       email:  '',
@@ -73,7 +78,7 @@
           email: this.email,
           password: this.password,
         };
-        axios.post('http://localhost:8000/api/register', credentials)
+        axiosInstance.post(this.formUri, credentials)
         .then(response => {
           // Manejar la respuesta exitosa, por ejemplo, guardar el token en el almacenamiento local
           console.log(response?.data);
